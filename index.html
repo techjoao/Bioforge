@@ -3,87 +3,73 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101114">
-  <meta name="description" content="BioForge — editor visual de páginas biográficas.">
-  <title>BioForge — Bio page builder</title>
+  <meta name="theme-color" content="#0c0d12">
+  <meta name="description" content="BioForge — construa sua página pessoal do seu jeito.">
+  <title>BioForge — Studio</title>
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#" aria-label="BioForge início"><span class="brand-mark">B</span> bioforge</a>
-    <span class="privacy-note"><span class="privacy-dot"></span> Seus dados ficam neste dispositivo</span>
-    <button class="button button-primary" id="export-button" type="button">Exportar página ↗</button>
+    <a class="brand" href="#" aria-label="BioForge"><span class="brand-mark">B</span><span>bioforge<span class="brand-studio"> / STUDIO</span></span></a>
+    <div class="privacy-note"><span class="privacy-dot"></span> LOCAL-FIRST · SEM TRACKING</div>
+    <div class="top-actions"><button class="btn btn-ghost" id="save-button" type="button">Salvar rascunho</button><button class="btn btn-primary" id="export-button" type="button">Exportar HTML <span>↗</span></button></div>
   </header>
 
-  <main class="workspace">
-    <section class="editor-panel" aria-labelledby="editor-title">
-      <div class="panel-heading">
-        <p class="eyebrow">WORKSPACE / 001</p>
-        <h1 id="editor-title">Sua história,<br><span>do seu jeito.</span></h1>
-        <p class="muted">Monte sua página biográfica sem escrever uma linha de código.</p>
-      </div>
+  <main class="app-shell">
+    <aside class="sidebar">
+      <div class="side-intro"><p class="eyebrow">PERSONAL WEBSITE BUILDER</p><h1>Faça sua<br><em>presença.</em></h1><p>Uma página com a sua cara. Sem código, sem conta e sem entregar seus dados.</p></div>
+      <nav class="section-nav" aria-label="Seções do editor"><a href="#identity" class="active"><span>01</span> Identidade</a><a href="#content"><span>02</span> Conteúdo</a><a href="#links"><span>03</span> Links</a><a href="#design"><span>04</span> Design</a></nav>
+      <div class="side-bottom"><div class="privacy-card"><span class="privacy-icon">⌁</span><div><strong>Seus dados são seus.</strong><p>O editor funciona no navegador. Nada é enviado para servidores BioForge.</p></div></div><p class="version">BIOFORGE STUDIO · 0.2.0</p></div>
+    </aside>
 
+    <section class="editor">
+      <div class="editor-head"><div><p class="eyebrow">WORKSPACE / 001</p><h2>Editor</h2></div><span class="autosave-label"><i></i> PRÉVIA EM TEMPO REAL</span></div>
       <form id="bio-form">
-        <fieldset>
-          <legend><span>01</span> Identidade</legend>
-          <label for="name">Nome</label>
-          <input id="name" name="name" maxlength="70" placeholder="Ex.: João Silva">
-          <label for="headline">Descrição curta</label>
-          <input id="headline" name="headline" maxlength="120" placeholder="Ex.: Estudante e entusiasta de tecnologia">
+        <fieldset id="identity" class="editor-section"><legend><span>01</span> Identidade</legend>
+          <div class="avatar-edit"><div class="avatar-thumb" id="avatar-thumb">B</div><div class="avatar-actions"><label class="btn btn-small btn-ghost" for="avatar-file">Adicionar foto</label><input id="avatar-file" type="file" accept="image/png,image/jpeg,image/webp" hidden><button class="text-button" id="remove-avatar" type="button">Remover</button><small>Imagem fica apenas neste dispositivo.</small></div></div>
+          <label for="name">Nome ou título</label><input id="name" name="name" maxlength="70" placeholder="Ex.: João Silva">
+          <label for="headline">Descrição curta</label><input id="headline" name="headline" maxlength="140" placeholder="Ex.: Estudante, designer e curioso por tecnologia">
+          <label for="location">Localização <span class="optional">OPCIONAL</span></label><input id="location" name="location" maxlength="80" placeholder="Ex.: Imperatriz, Brasil">
         </fieldset>
 
-        <fieldset>
-          <legend><span>02</span> Sobre você</legend>
-          <label for="about">Sua biografia</label>
-          <textarea id="about" name="about" rows="5" maxlength="1200" placeholder="Conte um pouco da sua trajetória, interesses e do que está construindo..."></textarea>
+        <fieldset id="content" class="editor-section"><legend><span>02</span> Conteúdo</legend>
+          <label for="about">Sobre você</label><textarea id="about" name="about" rows="5" maxlength="1800" placeholder="Sua história, o que você faz e o que está construindo..."></textarea>
+          <label for="projects">Projetos e experiências <span class="hint">UM ITEM POR LINHA</span></label><textarea id="projects" name="projects" rows="4" maxlength="1200" placeholder="AquaControl&#10;BioForge"></textarea>
+          <label for="interests">Interesses</label><input id="interests" name="interests" maxlength="220" placeholder="Tecnologia, design, música...">
         </fieldset>
 
-        <fieldset>
-          <legend><span>03</span> Destaques</legend>
-          <label for="projects">Projetos e experiências</label>
-          <textarea id="projects" name="projects" rows="4" maxlength="900" placeholder="Um projeto por linha"></textarea>
-          <label for="interests">Interesses</label>
-          <input id="interests" name="interests" maxlength="180" placeholder="Tecnologia, design, música...">
+        <fieldset id="links" class="editor-section"><legend><span>03</span> Links e presença</legend>
+          <p class="section-help">Adicione seus cantos da internet. Só aparecem na página se você preencher.</p>
+          <label for="website">Site / Portfólio</label><input id="website" name="website" type="url" maxlength="240" placeholder="https://seusite.com">
+          <label for="github">GitHub</label><input id="github" name="github" type="url" maxlength="240" placeholder="https://github.com/usuario">
+          <label for="instagram">Instagram</label><input id="instagram" name="instagram" type="url" maxlength="240" placeholder="https://instagram.com/usuario">
+          <label for="linkedin">LinkedIn</label><input id="linkedin" name="linkedin" type="url" maxlength="240" placeholder="https://linkedin.com/in/usuario">
         </fieldset>
 
-        <fieldset>
-          <legend><span>04</span> Aparência</legend>
-          <label for="accent">Cor de destaque</label>
-          <div class="color-control"><input id="accent" name="accent" type="color" value="#9b8cff"><span>Personalize a identidade visual</span></div>
+        <fieldset id="design" class="editor-section"><legend><span>04</span> Direção visual</legend>
+          <label for="template">Modelo</label><select id="template" name="template"><option value="noir">Noir — minimalista</option><option value="editorial">Editorial — tipográfico</option><option value="terminal">Terminal — developer</option></select>
+          <label for="font">Tipografia</label><select id="font" name="font"><option value="system">System / clean</option><option value="serif">Serif / editorial</option><option value="mono">Mono / terminal</option></select>
+          <div class="color-grid"><div><label for="accent">Cor de destaque</label><div class="color-input"><input id="accent" name="accent" type="color" value="#a78bfa"><output id="accent-value">#A78BFA</output></div></div><div><label for="surface">Fundo</label><select id="surface" name="surface"><option value="dark">Dark</option><option value="light">Light</option><option value="midnight">Midnight</option></select></div></div>
+          <label class="toggle-row" for="show-footer"><span><strong>Assinatura BioForge</strong><small>Mostrar crédito discreto no rodapé</small></span><input id="show-footer" name="showFooter" type="checkbox" checked><span class="toggle"></span></label>
         </fieldset>
       </form>
-
-      <div class="editor-actions">
-        <button class="button button-quiet" id="save-button" type="button">Salvar neste dispositivo</button>
-        <button class="button button-quiet" id="clear-button" type="button">Limpar editor</button>
-      </div>
-      <p class="status" id="status" role="status" aria-live="polite">Nada é enviado para servidores.</p>
+      <div class="editor-footer"><button class="btn btn-ghost" id="clear-button" type="button">Limpar formulário</button><span id="status" role="status" aria-live="polite">Pronto para criar.</span></div>
     </section>
 
-    <section class="preview-panel" aria-label="Pré-visualização">
-      <div class="preview-toolbar"><span><i></i> LIVE PREVIEW</span><span>DESKTOP / 01</span></div>
-      <article class="bio-card" id="preview">
-        <div class="avatar" id="preview-avatar">B</div>
-        <p class="preview-kicker">BIOGRAPHY / PROFILE</p>
-        <h2 id="preview-name">Sua identidade começa aqui.</h2>
-        <p class="preview-headline" id="preview-headline">Sua descrição curta aparece neste espaço.</p>
-        <div class="preview-rule"></div>
-        <section class="preview-section">
-          <h3>Sobre</h3>
-          <p id="preview-about">Escreva sua biografia no editor para começar a construir sua página.</p>
-        </section>
-        <section class="preview-section">
-          <h3>Projetos & experiências</h3>
-          <ul id="preview-projects"><li>Seus projetos vão aparecer aqui.</li></ul>
-        </section>
-        <section class="preview-section">
-          <h3>Interesses</h3>
-          <p id="preview-interests">Seus interesses em um só lugar.</p>
-        </section>
-        <footer class="preview-footer">FEITO COM BIOFORGE <span>✳</span></footer>
-      </article>
-      <p class="preview-caption">A prévia é atualizada enquanto você edita.</p>
+    <section class="preview-area" aria-label="Pré-visualização da página">
+      <div class="preview-top"><div><span class="live-dot"></span> LIVE PREVIEW</div><span class="preview-device">DESKTOP</span><button class="device-button" id="device-button" type="button" aria-label="Alternar largura da prévia">▯</button></div>
+      <div class="preview-stage"><article class="bio-page template-noir surface-dark font-system" id="preview">
+        <div class="page-topline"><span>PERSONAL PROFILE</span><span class="page-index">01 — 01</span></div>
+        <header class="profile-header"><div class="profile-avatar" id="preview-avatar">B</div><div class="profile-meta" id="preview-location"></div><p class="profile-kicker">HELLO, I'M</p><h1 id="preview-name">Sua próxima página começa aqui.</h1><p class="profile-headline" id="preview-headline">Sua descrição curta vai aparecer aqui.</p></header>
+        <div class="page-divider"></div>
+        <section class="page-section" id="about-section"><div class="section-label"><span>01</span><h2>Sobre</h2></div><p id="preview-about">Conte sua história no editor. A prévia vai acompanhar cada mudança.</p></section>
+        <section class="page-section" id="projects-section"><div class="section-label"><span>02</span><h2>Projetos selecionados</h2></div><ul id="preview-projects"><li>Seus projetos vão aparecer aqui.</li></ul></section>
+        <section class="page-section" id="interests-section"><div class="section-label"><span>03</span><h2>Interesses</h2></div><p id="preview-interests">O que move sua curiosidade?</p></section>
+        <section class="page-section links-section" id="social-section" hidden><div class="section-label"><span>04</span><h2>Encontre-me</h2></div><div class="preview-links" id="preview-links"></div></section>
+        <footer class="page-footer" id="preview-footer">BUILT WITH BIOFORGE <span>✳</span></footer>
+      </article></div>
+      <div class="preview-bottom"><span>PREVIEW NÃO É UM SITE PUBLICADO</span><span>SEUS DADOS NÃO SAEM DO NAVEGADOR</span></div>
     </section>
   </main>
 </body>
