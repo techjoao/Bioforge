@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101114">
+  <meta name="description" content="BioForge — editor visual de páginas biográficas.">
+  <title>BioForge — Bio page builder</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="BioForge início"><span class="brand-mark">B</span> bioforge</a>
+    <span class="privacy-note"><span class="privacy-dot"></span> Seus dados ficam neste dispositivo</span>
+    <button class="button button-primary" id="export-button" type="button">Exportar página ↗</button>
+  </header>
+
+  <main class="workspace">
+    <section class="editor-panel" aria-labelledby="editor-title">
+      <div class="panel-heading">
+        <p class="eyebrow">WORKSPACE / 001</p>
+        <h1 id="editor-title">Sua história,<br><span>do seu jeito.</span></h1>
+        <p class="muted">Monte sua página biográfica sem escrever uma linha de código.</p>
+      </div>
+
+      <form id="bio-form">
+        <fieldset>
+          <legend><span>01</span> Identidade</legend>
+          <label for="name">Nome</label>
+          <input id="name" name="name" maxlength="70" placeholder="Ex.: João Silva">
+          <label for="headline">Descrição curta</label>
+          <input id="headline" name="headline" maxlength="120" placeholder="Ex.: Estudante e entusiasta de tecnologia">
+        </fieldset>
+
+        <fieldset>
+          <legend><span>02</span> Sobre você</legend>
+          <label for="about">Sua biografia</label>
+          <textarea id="about" name="about" rows="5" maxlength="1200" placeholder="Conte um pouco da sua trajetória, interesses e do que está construindo..."></textarea>
+        </fieldset>
+
+        <fieldset>
+          <legend><span>03</span> Destaques</legend>
+          <label for="projects">Projetos e experiências</label>
+          <textarea id="projects" name="projects" rows="4" maxlength="900" placeholder="Um projeto por linha"></textarea>
+          <label for="interests">Interesses</label>
+          <input id="interests" name="interests" maxlength="180" placeholder="Tecnologia, design, música...">
+        </fieldset>
+
+        <fieldset>
+          <legend><span>04</span> Aparência</legend>
+          <label for="accent">Cor de destaque</label>
+          <div class="color-control"><input id="accent" name="accent" type="color" value="#9b8cff"><span>Personalize a identidade visual</span></div>
+        </fieldset>
+      </form>
+
+      <div class="editor-actions">
+        <button class="button button-quiet" id="save-button" type="button">Salvar neste dispositivo</button>
+        <button class="button button-quiet" id="clear-button" type="button">Limpar editor</button>
+      </div>
+      <p class="status" id="status" role="status" aria-live="polite">Nada é enviado para servidores.</p>
+    </section>
+
+    <section class="preview-panel" aria-label="Pré-visualização">
+      <div class="preview-toolbar"><span><i></i> LIVE PREVIEW</span><span>DESKTOP / 01</span></div>
+      <article class="bio-card" id="preview">
+        <div class="avatar" id="preview-avatar">B</div>
+        <p class="preview-kicker">BIOGRAPHY / PROFILE</p>
+        <h2 id="preview-name">Sua identidade começa aqui.</h2>
+        <p class="preview-headline" id="preview-headline">Sua descrição curta aparece neste espaço.</p>
+        <div class="preview-rule"></div>
+        <section class="preview-section">
+          <h3>Sobre</h3>
+          <p id="preview-about">Escreva sua biografia no editor para começar a construir sua página.</p>
+        </section>
+        <section class="preview-section">
+          <h3>Projetos & experiências</h3>
+          <ul id="preview-projects"><li>Seus projetos vão aparecer aqui.</li></ul>
+        </section>
+        <section class="preview-section">
+          <h3>Interesses</h3>
+          <p id="preview-interests">Seus interesses em um só lugar.</p>
+        </section>
+        <footer class="preview-footer">FEITO COM BIOFORGE <span>✳</span></footer>
+      </article>
+      <p class="preview-caption">A prévia é atualizada enquanto você edita.</p>
+    </section>
+  </main>
+</body>
+</html>
