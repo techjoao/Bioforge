@@ -18,7 +18,7 @@ function find(id){return doc.elements.find(e=>e.id===id)}
 function roundGrid(v){return snap?v%grid<grid/2?v-v%grid:v+(grid-v%grid):v}
 function escape(s){return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 function render(){
- board.style.width=doc.width+"px";board.style.height=doc.height+"px";board.style.background=doc.bg;
+ board.style.width=doc.width+"px";board.style.height=doc.height+"px";board.style.backgroundColor=doc.bg;
  board.classList.toggle("show-grid",showGrid);board.style.backgroundSize=grid+"px "+grid+"px";
  board.replaceChildren();
  doc.elements.forEach(el=>{
