@@ -32,3 +32,5 @@
 #image-props .stack-label{margin-bottom:10px}
 body[data-theme="light"] .design-element.selected{outline-color:var(--accent)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+
+.accent-swatches{display:grid;grid-template-columns:repeat(6,26px);gap:8px;margin:12px 0 4px}.accent-swatches button{width:26px;height:26px;border-radius:50%;border:2px solid #ffffff30;background:var(--swatch);padding:0;transition:transform .18s,border-color .18s}.accent-swatches button:hover{transform:scale(1.14)}.accent-swatches button.active{border-color:var(--text);outline:2px solid var(--accent);outline-offset:2px}.design-element{transition:box-shadow .16s ease,outline-color .16s ease}.design-element:not(.image){z-index:2}.template-card,.mode-btn,.settings-btn,.tool,.btn,.wide-btn{transition:background .18s,border-color .18s,transform .18s}.template-card:hover{transform:translateY(-2px)}.settings-card{animation:bf-panel-in .22s ease both}@keyframes bf-panel-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
