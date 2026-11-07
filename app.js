@@ -74,6 +74,43 @@ $("save").onclick=()=>{try{localStorage.setItem(STORE,JSON.stringify(doc));$("do
 $("reset-doc").onclick=()=>{if(!confirm("Restaurar a composição inicial? Isso substitui o documento atual."))return;snapshot();doc={width:760,height:980,bg:"#111218",elements:[]};selected=null;render();notify("Documento reiniciado")};
 function exportHtml(){const elements=doc.elements.map(el=>{const style='left:'+el.x+'px;top:'+el.y+'px;width:'+el.w+'px;height:'+el.h+'px;color:'+el.color+';background:'+(el.type==="shape"?el.bg:"transparent")+';font-size:'+el.size+'px;font-weight:'+el.weight+';text-align:'+el.align+';opacity:'+(el.opacity/100)+';border-radius:'+el.radius+'px;transform:rotate('+el.rotation+'deg)';return '<div class="'+el.type+'" style="'+style+'">'+(el.type==="text"?escape(el.text).replace(/\n/g,"<br>"):"")+"</div>"}).join("\n");const css='*{box-sizing:border-box}body{margin:0;padding:40px 12px;background:#e9e9ee;font-family:system-ui,sans-serif}.page{position:relative;width:'+doc.width+'px;height:'+doc.height+'px;max-width:100%;margin:auto;background:'+doc.bg+';overflow:hidden}.text,.shape{position:absolute;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.25}.shape{background:var(--shape-bg)}@media(max-width:'+doc.width+'px){.page{transform-origin:top center;transform:scale(calc(100vw / '+doc.width+'));margin-bottom:calc(('+doc.height+'px * (100vw / '+doc.width+') - '+doc.height+'px))}}';const html='<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Minha página — BioForge</title><style>'+css+'</style></head><body><main class="page">'+elements+'</main></body></html>';const url=URL.createObjectURL(new Blob([html],{type:"text/html;charset=utf-8"}));const a=document.createElement("a");a.href=url;a.download="bioforge-page.html";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);notify("HTML independente exportado")}
 $("export").onclick=exportHtml;
-function load(){try{const saved=localStorage.getItem(STORE);if(saved){const parsed=JSON.parse(saved);if(parsed&&Array.isArray(parsed.elements)&&Number.isFinite(parsed.width))doc=parsed}}catch{}}
-load();render();$("fit").click();
+
+const PREFS="bioforge-preferences-v1";
+let currentTemplate="profile";
+function makeText(id,name,text,x,y,w,h,color,size,weight=400,align="left"){return{id,type:"text",name,text,x,y,w,h,color,bg:"transparent",size,weight,align,opacity:100,radius:0,rotation:0}}
+function makeShape(id,name,x,y,w,h,bg,radius=8){return{id,type:"shape",name,text:"",x,y,w,h,color:"#ffffff",bg,size:16,weight:400,align:"left",opacity:100,radius,rotation:0}}
+function buildTemplate(kind,name,bio,accent){
+ const dark=kind==="terminal", editorial=kind==="editorial", bento=kind==="bento";
+ const bg=dark?"#101b16":editorial?"#f0eee8":bento?"#e9edf2":"#eee9df";
+ const ink=dark?"#c9f5d1":editorial?"#20201e":bento?"#252b36":"#292720";
+ const muted=dark?"#8dbb98":editorial?"#68645e":bento?"#697383":"#777166";
+ let e=[];
+ if(kind==="profile"){
+ e=[makeText("kicker","Apresentação","OLÁ, EU SOU",64,75,550,24,accent,13,700),makeText("hero","Nome",name+".",64,145,620,110,ink,72,700),makeText("bio","Descrição",bio,68,275,570,75,muted,22),makeShape("rule","Linha",68,390,620,2,accent,0),makeText("about-title","Título sobre","UM POUCO SOBRE MIM",68,440,500,30,accent,13,700),makeText("about","Sobre", "Este é o seu espaço. Conte um pouco da sua história, fale sobre o que gosta e o que está criando.",68,485,570,130,ink,20),makeText("links","Links","PROJETOS     CONTATO     REDES",68,770,570,35,ink,13,600),makeText("foot","Rodapé","FEITO COM BIOFORGE",68,890,400,25,muted,10,600)];
+ }else if(editorial){
+ e=[makeText("meta","Identificação","PORTFÓLIO / PÁGINA PESSOAL",56,50,600,22,accent,12,700),makeText("hero","Título",name+" —",56,135,650,175,ink,76,700),makeText("hero2","Chamada","ideias em movimento.",56,300,650,90,ink,52,400),makeText("bio","Descrição",bio,60,430,560,70,muted,19),makeShape("rule","Linha",60,550,640,1,ink,0),makeText("work","Projetos","01 / PROJETOS\n\nMostre aqui algo que você fez, estudou ou gostaria de compartilhar.",60,600,620,170,ink,18),makeText("foot","Rodapé","CONTATO  ↗",60,890,300,25,accent,12,700)];
+ }else if(dark){
+ e=[makeText("meta","Caminho","~/ABOUT  •  BIOFORGE",55,60,620,25,accent,13,600),makeText("hero","Título",name+"_ ",55,150,650,105,ink,64,700),makeText("bio","Descrição",bio,60,275,590,65,muted,18),makeShape("panel","Bloco",55,405,650,190,"#18291f",8),makeText("about","Sobre","[ SOBRE ]\n\nEstudante, criador e curioso. Sempre aprendendo e construindo coisas novas.",78,430,590,145,ink,17),makeText("links","Links","[ PROJETOS ]    [ CONTATO ]    [ REDES ]",60,665,620,30,accent,13,600),makeText("foot","Rodapé","session ended — see you soon",60,890,500,25,muted,12,400)];
+ }else{
+ e=[makeText("hero","Nome",name,48,55,620,80,ink,54,700),makeText("bio","Descrição",bio,52,145,610,55,muted,17),makeShape("about-card","Cartão sobre",48,245,300,220,"#ffffff",14),makeText("about","Sobre","SOBRE\n\nConte um pouco da sua história.",68,270,255,165,ink,17),makeShape("project-card","Cartão projetos",365,245,300,220,"#d9e0ea",14),makeText("projects","Projetos","PROJETOS\n\nMostre o que você está criando.",385,270,255,165,ink,17),makeShape("links-card","Cartão links",48,490,617,110,accent,14),makeText("links","Links","ENCONTRE-ME  ·  CONTATO  ·  REDES",70,525,570,40,"#ffffff",15,700),makeText("foot","Rodapé","FEITO COM BIOFORGE",48,890,400,25,muted,10,600)];
+ }
+ return{width:760,height:980,bg,elements:e};
+}
+function setMode(mode){const easy=mode==="easy";$("easy-workspace").hidden=!easy;$("editor-workspace").hidden=easy;$("easy-mode").classList.toggle("active",easy);$("editor-mode").classList.toggle("active",!easy);if(!easy)$("fit").click();localStorage.setItem("bioforge-mode",mode)}
+$("easy-mode").onclick=()=>setMode("easy");$("editor-mode").onclick=()=>setMode("editor");
+document.querySelectorAll(".template-card").forEach(card=>card.addEventListener("click",()=>{currentTemplate=card.dataset.template;document.querySelectorAll(".template-card").forEach(c=>c.classList.toggle("selected",c===card))}));
+$("create-from-template").onclick=()=>{const name=$("easy-name").value.trim()||"Seu Nome",bio=$("easy-bio").value.trim()||"Uma pequena apresentação sobre você.",accent=$("easy-accent").value;snapshot();doc=buildTemplate(currentTemplate,name,bio,accent);selected=null;render();setMode("editor");notify("Modelo pronto para personalizar")};
+function applyTheme(theme){const actual=theme==="system"?(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"):theme;document.body.dataset.theme=actual;localStorage.setItem(PREFS,JSON.stringify({...readPrefs(),theme}))}
+function readPrefs(){try{return JSON.parse(localStorage.getItem(PREFS)||"{}")}catch{return{}}}
+function openSettings(){$("settings-panel").hidden=false}
+function closeSettings(){$("settings-panel").hidden=true}
+$("settings-open").onclick=openSettings;$("settings-close").onclick=closeSettings;$("settings-panel").addEventListener("click",ev=>{if(ev.target===$("settings-panel"))closeSettings()});
+$("ui-theme").onchange=ev=>applyTheme(ev.target.value);
+$("ui-accent").oninput=ev=>{document.documentElement.style.setProperty("--ui-accent",ev.target.value);localStorage.setItem(PREFS,JSON.stringify({...readPrefs(),accent:ev.target.value}))};
+$("setting-grid").onchange=ev=>{showGrid=ev.target.checked;$("grid-toggle").checked=showGrid;render();localStorage.setItem(PREFS,JSON.stringify({...readPrefs(),grid:showGrid}))};
+$("setting-snap").onchange=ev=>{snap=ev.target.checked;$("snap-toggle").checked=snap;localStorage.setItem(PREFS,JSON.stringify({...readPrefs(),snap}))};
+$("clear-local").onclick=()=>{if(!confirm("Apagar o documento e as preferências salvas neste navegador?"))return;localStorage.removeItem(STORE);localStorage.removeItem(PREFS);localStorage.removeItem("bioforge-mode");location.reload()};
+function loadPreferences(){const p=readPrefs();$("ui-theme").value=p.theme||"dark";$("ui-accent").value=p.accent||"#a78bfa";document.documentElement.style.setProperty("--ui-accent",p.accent||"#a78bfa");applyTheme(p.theme||"dark");showGrid=p.grid!==false;snap=p.snap!==false;$("grid-toggle").checked=showGrid;$("snap-toggle").checked=snap;$("setting-grid").checked=showGrid;$("setting-snap").checked=snap}
+\nfunction load(){try{const saved=localStorage.getItem(STORE);if(saved){const parsed=JSON.parse(saved);if(parsed&&Array.isArray(parsed.elements)&&Number.isFinite(parsed.width))doc=parsed}}catch{}}
+load();loadPreferences();render();setMode(localStorage.getItem("bioforge-mode")||"easy");$("fit").click();
 })();
