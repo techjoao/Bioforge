@@ -17,9 +17,9 @@ O BioForge reúne um começo simples com modelos prontos e um editor livre para 
 - Inspetor para posição, tamanho, cor, preenchimento, opacidade, tipografia e rotação.
 - Grade opcional, encaixe configurável, zoom e navegação pelo canvas.
 - Desfazer e refazer.
-- Exportação para HTML independente.
+- Fotos, GIFs, banners e fundos com máscara, enquadramento, desfoque, brilho, saturação e sobreposição.\n- Animações suaves por camada, preservadas na página exportada.\n- Exportação para HTML independente com imagens incorporadas.
 
-## Configurações
+## Imagens e movimento\n\nAdicione arquivos locais de imagem (incluindo GIF), arraste e redimensione no canvas e escolha formatos inspirados nas formas do Material You: círculo, superelipse, arco, losango, pílula e cantos arredondados. Banner e fundo também aceitam desfoque, brilho, saturação e camada de cor. As animações são opcionais e respeitam a preferência do sistema por movimento reduzido. Imagens são incorporadas ao documento local; arquivos muito grandes podem exceder a cota de armazenamento do navegador.\n\n## Configurações
 - Tema escuro, claro ou igual ao dispositivo.
 - Cor de destaque da interface.
 - Preferências de grade e encaixe.
