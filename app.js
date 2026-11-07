@@ -1,7 +1,6 @@
 const form = document.querySelector("#bio-form");
 const fields = ["name", "headline", "about", "projects", "interests", "accent"];
 const status = document.querySelector("#status");
-const accent = document.querySelector("#accent");
 
 const getData = () => Object.fromEntries(fields.map((key) => [key, form.elements[key].value]));
 const setStatus = (message) => { status.textContent = message; };
