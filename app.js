@@ -111,6 +111,6 @@ $("setting-grid").onchange=ev=>{showGrid=ev.target.checked;$("grid-toggle").chec
 $("setting-snap").onchange=ev=>{snap=ev.target.checked;$("snap-toggle").checked=snap;localStorage.setItem(PREFS,JSON.stringify({...readPrefs(),snap}))};
 $("clear-local").onclick=()=>{if(!confirm("Apagar o documento e as preferências salvas neste navegador?"))return;localStorage.removeItem(STORE);localStorage.removeItem(PREFS);localStorage.removeItem("bioforge-mode");location.reload()};
 function loadPreferences(){const p=readPrefs();$("ui-theme").value=p.theme||"dark";$("ui-accent").value=p.accent||"#a78bfa";document.documentElement.style.setProperty("--ui-accent",p.accent||"#a78bfa");applyTheme(p.theme||"dark");showGrid=p.grid!==false;snap=p.snap!==false;$("grid-toggle").checked=showGrid;$("snap-toggle").checked=snap;$("setting-grid").checked=showGrid;$("setting-snap").checked=snap}
-\nfunction load(){try{const saved=localStorage.getItem(STORE);if(saved){const parsed=JSON.parse(saved);if(parsed&&Array.isArray(parsed.elements)&&Number.isFinite(parsed.width))doc=parsed}}catch{}}
+function load(){try{const saved=localStorage.getItem(STORE);if(saved){const parsed=JSON.parse(saved);if(parsed&&Array.isArray(parsed.elements)&&Number.isFinite(parsed.width))doc=parsed}}catch{}}
 load();loadPreferences();render();setMode(localStorage.getItem("bioforge-mode")||"easy");$("fit").click();
 })();
