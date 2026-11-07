@@ -1,42 +1,49 @@
 # BioForge
 
-**A privacy-first, open-source visual editor for personal pages.**
+**Um editor visual, gratuito e local-first para criar páginas pessoais.**
 
-BioForge is a browser-based canvas editor inspired by visual design tools. Build a personal page by placing and styling elements directly on an artboard, then export it as a standalone HTML file.
+O BioForge reúne um começo simples com modelos prontos e um editor livre para quem quer ajustar cada detalhe. Tudo funciona no navegador, sem conta e sem enviar o conteúdo para servidores do projeto.
 
-## Current editor
+## Dois jeitos de criar
 
-- Free-position canvas with selectable text and shape layers.
-- Drag to move and corner handles to resize elements.
-- Layer list, selection inspector, and direct double-click text editing.
-- Editable X/Y position, width, height, typography, color, fill, opacity, radius, and rotation.
-- Configurable artboard width and background.
-- Optional grid, 4/8/16/24 px grid spacing, and snap-to-grid.
-- Canvas zoom, fit-to-screen, and hand/pan tool.
-- Add headings, paragraphs, and shapes; duplicate and delete layers.
-- Undo/redo keyboard shortcuts (Ctrl/Cmd+Z and Ctrl/Cmd+Shift+Z).
-- Local document saving in the current browser.
-- Standalone HTML export; no runtime library or remote dependency required.
+### Modo fácil
+- Galeria de modelos: Pessoal, Editorial, Terminal e Blocos.
+- Campos rápidos para nome, apresentação e cor principal.
+- Um clique abre a composição no editor livre para continuar personalizando.
 
-## Privacy by design
+### Editor livre
+- Canvas com posicionamento livre, camadas e seleção de elementos.
+- Arrastar, redimensionar, duplicar e excluir elementos.
+- Inspetor para posição, tamanho, cor, preenchimento, opacidade, tipografia e rotação.
+- Grade opcional, encaixe configurável, zoom e navegação pelo canvas.
+- Desfazer e refazer.
+- Exportação para HTML independente.
 
-- No accounts, user database, analytics, telemetry, advertising trackers, or tracking pixels.
-- Document content is processed in the browser and is not uploaded to BioForge.
-- No third-party APIs, remote fonts, or externally hosted scripts are required.
-- Saved documents stay in the browser's local storage on the current device.
-- Exported pages are static files. If you publish them, your chosen hosting provider may independently process technical request data such as server logs.
+## Configurações
+- Tema escuro, claro ou igual ao dispositivo.
+- Cor de destaque da interface.
+- Preferências de grade e encaixe.
+- Opção para apagar documento e preferências salvos no navegador.
 
-## Run locally
+## Privacidade
 
-1. Clone or download this repository.
-2. Open `index.html` in a modern browser.
+- Sem contas, cadastro, analytics, telemetria, rastreadores ou pixels.
+- O conteúdo é processado no navegador e não é enviado ao BioForge.
+- Não depende de APIs, fontes remotas ou scripts externos.
+- Rascunhos e preferências ficam no armazenamento local do navegador.
+- Ao publicar um HTML exportado, o provedor de hospedagem pode processar seus próprios registros técnicos, como logs de acesso.
 
-No build step, package installation, or backend is required.
+## Usar
 
-## Project direction
+1. Baixe ou clone este repositório.
+2. Abra `index.html` em um navegador moderno.
 
-The editor is evolving toward a Figma-like experience for personal websites. The current canvas uses free positioning with optional alignment grid and snapping. Responsive breakpoint editing, richer component types, smart guides, and a full multi-page document workflow are planned future improvements.
+Não é necessário instalar dependências, executar build ou configurar backend.
 
-## License
+## Inspiração
 
-MIT. See [LICENSE](LICENSE).
+Os modelos usam direções visuais comuns em portfólios pessoais — editorial, minimalista, terminal e layouts em blocos — reinterpretadas em composições originais para o BioForge. Referências de pesquisa: [exemplos de sites pessoais no Figma](https://www.figma.com/resource-library/personal-website-examples/) e [galeria de layouts de portfólio da HeroGrids](https://herogrids.com/industry/portfolio/).
+
+## Licença
+
+MIT. Consulte [LICENSE](LICENSE).
