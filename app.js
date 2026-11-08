@@ -123,14 +123,14 @@ function buildTemplate(kind,name,bio,accent){
   e.push(makeText("bio","Descrição",bio,60,500,590,60,muted,18));
   e.push(makeShape("rule","Linha",60,595,640,1,ink,0));
   e.push(makeText("work-label","Seção","SELEÇÃO DE TRABALHOS",60,635,600,24,accent,11,700));
-  e.push(makeText("work","Projetos","01  /  PROJETO EM DESTAQUE\\nUma ideia, um estudo ou algo que você construiu.\\n\\n02  /  OUTRO PROJETO\\nMais um espaço para mostrar seu processo.",60,680,630,175,ink,17));
+  e.push(makeText("work","Projetos","01  /  PROJETO EM DESTAQUE\nUma ideia, um estudo ou algo que você construiu.\n\n02  /  OUTRO PROJETO\nMais um espaço para mostrar seu processo.",60,680,630,175,ink,17));
   e.push(makeText("foot","Contato","VAMOS CONVERSAR  ↗",60,915,400,22,accent,12,700));
  }else if(terminal){
   e.push(makeText("meta","Caminho","~/PROFILE  •  ONLINE",250,190,450,22,accent,12,600));
   e.push(makeText("hero","Nome",name+"_",250,230,450,68,ink,48,750));
   e.push(makeText("bio","Descrição",bio,250,310,440,68,muted,16));
   e.push(makeShape("panel","Painel sobre",70,440,620,175,"#151f25",12));
-  e.push(makeText("about","Sobre","$ whoami\\nEstudante, criador e curioso.\\nSempre aprendendo e construindo coisas novas.",92,462,570,125,ink,16,500));
+  e.push(makeText("about","Sobre","$ whoami\nEstudante, criador e curioso.\nSempre aprendendo e construindo coisas novas.",92,462,570,125,ink,16,500));
   e.push(makeShape("link-one","Botão / projetos",70,665,295,52,"#1b3029",10));
   e.push(makeText("link-one-label","Texto / projetos","[ VER PROJETOS ]",88,681,260,22,accent,13,650));
   e.push(makeShape("link-two","Botão / contato",382,665,308,52,"#1b3029",10));
@@ -140,9 +140,9 @@ function buildTemplate(kind,name,bio,accent){
   e.push(makeText("hero","Nome",name,55,355,650,65,ink,48,750));
   e.push(makeText("bio","Descrição",bio,58,425,630,55,muted,17));
   e.push(makeShape("about-card","Cartão sobre",48,530,300,205,"#ffffff",18));
-  e.push(makeText("about","Sobre","SOBRE MIM\\n\\nUm pouco da sua história, interesses e ideias.",68,553,255,155,"#252b36",16,600));
+  e.push(makeText("about","Sobre","SOBRE MIM\n\nUm pouco da sua história, interesses e ideias.",68,553,255,155,"#252b36",16,600));
   e.push(makeShape("project-card","Cartão projetos",365,530,300,205,"#d9e0ea",18));
-  e.push(makeText("projects","Projetos","PROJETOS\\n\\nMostre algo que você está criando.",385,553,255,155,"#252b36",16,600));
+  e.push(makeText("projects","Projetos","PROJETOS\n\nMostre algo que você está criando.",385,553,255,155,"#252b36",16,600));
   e.push(makeShape("links-card","Cartão links",48,760,617,90,accent,16));
   e.push(makeText("links","Links","ENCONTRE-ME  ·  CONTATO  ·  REDES",70,791,570,30,"#ffffff",14,700));
   e.push(makeText("foot","Rodapé","FEITO DO SEU JEITO",48,915,400,22,muted,10,600));
