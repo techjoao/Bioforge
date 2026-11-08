@@ -179,7 +179,7 @@ function showSitePage(page){
  if(studio){$("studio-modebar").hidden=false; if(!$("editor-workspace").hidden && $("editor-workspace").style.display==="none")$("editor-workspace").style.display=""; if(!$("easy-workspace").hidden && $("easy-workspace").style.display==="none")$("easy-workspace").style.display=""; $("fit").click();}
  else {$("studio-modebar").hidden=true;}
 }
-function navigateSite(page){history.replaceState(null,"",page==="home"?"#inicio":"#"+(page==="studio"?"studio":page==="community"?"comunidade":"sobre"));showSitePage(page);}
+function navigateSite(page){window.history.replaceState(null,"",page==="home"?"#inicio":"#"+(page==="studio"?"studio":page==="community"?"comunidade":"sobre"));showSitePage(page);}
 document.querySelectorAll("[data-page]").forEach(a=>a.addEventListener("click",ev=>{ev.preventDefault();navigateSite(a.dataset.page)}));
 document.querySelectorAll("[data-go-studio]").forEach(b=>b.addEventListener("click",()=>navigateSite("studio")));
 const initialPage=location.hash==="#studio"?"studio":location.hash==="#comunidade"?"community":location.hash==="#sobre"?"about":"home";
