@@ -123,3 +123,6 @@ button:hover,.btn:hover{filter:brightness(1.12)}button:active,.btn:active{transf
 @keyframes card-float{0%,100%{translate:0 0}50%{translate:0 -12px}}
 @media(max-width:760px){.site-nav{gap:10px;margin:0 4px}.site-nav a{font-size:10px}.topbar{padding:0 12px}.brand{font-size:13px}.hero-section{grid-template-columns:1fr;gap:0}.hero-copy h1{font-size:clamp(42px,11vw,64px)}.hero-visual{height:340px}.feature-strip,.about-grid{grid-template-columns:1fr}.feature-strip{margin-top:25px}.home-bottom{align-items:flex-start;flex-direction:column;margin-top:55px}.site-page{padding:45px 20px}.site-footer{flex-wrap:wrap}.workspace{grid-template-columns:1fr}#editor-workspace{height:calc(100vh - 180px)}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+html,body{height:auto;min-height:100%;overflow-x:hidden;overflow-y:auto}body.studio-active{height:100%;overflow:hidden}body.studio-active html{overflow:hidden}.site-page{overflow:visible}.site-footer{position:relative}
+@media(max-width:520px){.site-nav{gap:7px}.site-nav a{font-size:9px}.brand small{display:none}.topbar{gap:7px}.hero-visual{height:300px}.card-back{right:0;width:245px}.card-front{left:0;width:205px}.site-footer{font-size:9px}}
