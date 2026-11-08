@@ -34,3 +34,40 @@ body[data-theme="light"] .design-element.selected{outline-color:var(--accent)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
 
 .accent-swatches{display:grid;grid-template-columns:repeat(6,26px);gap:8px;margin:12px 0 4px}.accent-swatches button{width:26px;height:26px;border-radius:50%;border:2px solid #ffffff30;background:var(--swatch);padding:0;transition:transform .18s,border-color .18s}.accent-swatches button:hover{transform:scale(1.14)}.accent-swatches button.active{border-color:var(--text);outline:2px solid var(--accent);outline-offset:2px}.design-element{transition:box-shadow .16s ease,outline-color .16s ease}.design-element:not(.image){z-index:2}.template-card,.mode-btn,.settings-btn,.tool,.btn,.wide-btn{transition:background .18s,border-color .18s,transform .18s}.template-card:hover{transform:translateY(-2px)}.settings-card{animation:bf-panel-in .22s ease both}@keyframes bf-panel-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* Studio refresh: clearer hierarchy, calmer surfaces and stronger previews */
+:root{--panel:#181820;--panel2:#22222c;--line:#30303c}
+.topbar{background:#14141b;box-shadow:0 4px 24px #0002}
+.brand-mark{border-radius:10px;box-shadow:0 5px 18px color-mix(in srgb,var(--accent) 28%,transparent)}
+.modebar{background:#181820}
+.workspace{grid-template-columns:236px minmax(0,1fr) 286px}
+.panel-heading{height:50px;font-size:10px;letter-spacing:.12em}
+.add-tools{gap:7px;padding:13px}
+.add-tools button{min-height:58px;border-radius:9px;background:#22222c;transition:transform .16s,border-color .16s,background .16s}
+.add-tools button:hover{transform:translateY(-2px);border-color:var(--accent);background:#292936}
+.layers{padding:10px}
+.layer-row{min-height:36px;border-radius:8px;font-size:11px}
+.layer-row.selected{background:color-mix(in srgb,var(--accent) 20%,#22222c);box-shadow:inset 2px 0 var(--accent)}
+.canvas-toolbar{height:52px;background:#181820}
+.tool{height:31px;min-width:32px;border-radius:8px}
+.viewport{padding:48px 38px;background-color:#121219;background-image:radial-gradient(#363644 1px,transparent 1px);background-size:20px 20px}
+.artboard{box-shadow:0 24px 80px #0008,0 0 0 1px #ffffff12}
+.inspector{padding:0 16px 24px}
+.inspector-section{padding:18px 0}
+.inspector-section h3{font-size:11px;letter-spacing:.02em}
+.field-row input:not([type=color]):not([type=range]),.field-row select,.field-grid input,.stack-label textarea{border-radius:8px;padding:8px}
+.wide-btn,.danger-btn{border-radius:8px;padding:10px;font-size:10px}
+.template-grid{gap:16px}
+.template-card{padding:10px;border-radius:13px}
+.template-preview{height:205px;border-radius:9px;padding:16px;position:relative}
+.template-preview:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,#0002);pointer-events:none}
+.template-name{font-size:13px}
+.template-card small{font-size:10px}
+.easy-form{border-radius:14px;padding:20px}
+.easy-form input:not([type=color]),.easy-form textarea{border-radius:9px;padding:11px}
+.design-element.image{clip-path:var(--image-clip,none)}
+body[data-theme="light"] .canvas-toolbar{background:#f7f6f2}
+body[data-theme="light"] .add-tools button{background:#f5f4f0;color:var(--accent)}
+body[data-theme="light"] .layer-row.selected{background:color-mix(in srgb,var(--accent) 16%,#fff);color:#25231f}
+@media(max-width:900px){.workspace{grid-template-columns:190px minmax(0,1fr) 235px}}
+@media(max-width:650px){.workspace{grid-template-columns:1fr}.workspace .left-panel{order:2}.workspace .canvas-workspace{order:1}.workspace .right-panel{order:3}}
