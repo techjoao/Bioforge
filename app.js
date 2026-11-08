@@ -167,4 +167,22 @@ $("clear-local").onclick=()=>{if(!confirm("Apagar o documento e as preferências
 function loadPreferences(){const p=readPrefs();$("ui-theme").value=p.theme||"dark";$("ui-accent").value=p.accent||"#a78bfa";document.documentElement.style.setProperty("--ui-accent",p.accent||"#a78bfa");document.querySelectorAll("[data-accent]").forEach(item=>item.classList.toggle("active",item.dataset.accent===(p.accent||"#a78bfa")));applyTheme(p.theme||"dark");showGrid=p.grid!==false;snap=p.snap!==false;$("grid-toggle").checked=showGrid;$("snap-toggle").checked=snap;$("setting-grid").checked=showGrid;$("setting-snap").checked=snap}
 function load(){try{const saved=localStorage.getItem(STORE);if(saved){const parsed=JSON.parse(saved);if(parsed&&Array.isArray(parsed.elements)&&Number.isFinite(parsed.width))doc=parsed}}catch{}}
 load();loadPreferences();render();setMode(localStorage.getItem("bioforge-mode")||"easy");$("fit").click();
+
+/* Public site navigation */
+function showSitePage(page){
+ const studio=page==="studio";
+ document.body.classList.toggle("studio-active",studio);
+ $("site-home").hidden=page!=="home";
+ $("site-community").hidden=page!=="community";
+ $("site-about").hidden=page!=="about";
+ document.querySelectorAll(".site-nav [data-page]").forEach(a=>a.classList.toggle("active",a.dataset.page===page));
+ if(studio){$("studio-modebar").hidden=false; if(!$("editor-workspace").hidden && $("editor-workspace").style.display==="none")$("editor-workspace").style.display=""; if(!$("easy-workspace").hidden && $("easy-workspace").style.display==="none")$("easy-workspace").style.display=""; $("fit").click();}
+ else {$("studio-modebar").hidden=true;}
+}
+function navigateSite(page){history.replaceState(null,"",page==="home"?"#inicio":"#"+(page==="studio"?"studio":page==="community"?"comunidade":"sobre"));showSitePage(page);}
+document.querySelectorAll("[data-page]").forEach(a=>a.addEventListener("click",ev=>{ev.preventDefault();navigateSite(a.dataset.page)}));
+document.querySelectorAll("[data-go-studio]").forEach(b=>b.addEventListener("click",()=>navigateSite("studio")));
+const initialPage=location.hash==="#studio"?"studio":location.hash==="#comunidade"?"community":location.hash==="#sobre"?"about":"home";
+showSitePage(initialPage);
+window.addEventListener("hashchange",()=>{const hash=location.hash;showSitePage(hash==="#studio"?"studio":hash==="#comunidade"?"community":hash==="#sobre"?"about":"home")});
 })();
